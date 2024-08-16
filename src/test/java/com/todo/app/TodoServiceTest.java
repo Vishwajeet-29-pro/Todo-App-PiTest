@@ -33,11 +33,20 @@ class TodoServiceTest {
         todoList.setComplete(false);
         todoList.setCreateDate(LocalDate.now());
     }
+
     @Test
     public void createTodoItem() {
         when(todoAppRepository.save(any(TodoList.class))).thenReturn(todoList);
 
         TodoList todoList1 = todoService.create(todoList);
+        assertEquals(todoList, todoList1);
+    }
+
+    @Test
+    public void getTodoItemById() {
+        when(todoAppRepository.getReferenceById(any(Integer.class))).thenReturn(todoList);
+
+        TodoList todoList1 = todoService.getTodoById(todoList.getId());
         assertEquals(todoList, todoList1);
     }
 }
