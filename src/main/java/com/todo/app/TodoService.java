@@ -12,4 +12,8 @@ public class TodoService {
     public TodoList create(TodoList todoList) {
         return todoAppRepository.save(todoList);
     }
+
+    public TodoList getTodoById(int id) {
+        return todoAppRepository.getReferenceById(id);
+    }
 }
