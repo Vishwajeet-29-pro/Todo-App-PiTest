@@ -30,4 +30,8 @@ public class TodoService {
         todoItem.setCreateDate(todoItem.getCreateDate());
         return todoAppRepository.save(todoItem);
     }
+
+    public void deleteById(int idToDelete) {
+        todoAppRepository.deleteById(idToDelete);
+    }
 }
