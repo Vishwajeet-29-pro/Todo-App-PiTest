@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -66,5 +67,13 @@ class TodoServiceTest {
         TodoList updatedTodoList = todoService.updateTodoItemById(todoList.getId(), todoList);
         assertEquals(todoList, updatedTodoList);
         assertEquals(todoList.isComplete(), updatedTodoList.isComplete());
+    }
+
+    @Test
+    public void deleteTodoById() {
+      int idToDelete = 100;
+      todoService.deleteById(idToDelete);
+
+      verify(todoAppRepository).deleteById(idToDelete);
     }
 }
