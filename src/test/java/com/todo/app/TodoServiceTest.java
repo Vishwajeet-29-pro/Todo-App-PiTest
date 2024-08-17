@@ -5,12 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
-import java.util.Random;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -48,5 +46,13 @@ class TodoServiceTest {
 
         TodoList todoList1 = todoService.getTodoById(todoList.getId());
         assertEquals(todoList, todoList1);
+    }
+
+    @Test
+    public void findAllTodo() {
+        when(todoAppRepository.findAll()).thenReturn(List.of(todoList));
+
+        List<TodoList> todoLists = todoService.findAllTodos();
+        assertEquals(1, todoLists.size());
     }
 }
