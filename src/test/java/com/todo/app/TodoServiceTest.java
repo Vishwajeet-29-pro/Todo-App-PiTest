@@ -55,4 +55,16 @@ class TodoServiceTest {
         List<TodoList> todoLists = todoService.findAllTodos();
         assertEquals(1, todoLists.size());
     }
+
+    @Test
+    public void updateTodoById() {
+        when(todoAppRepository.getReferenceById(any(Integer.class))).thenReturn(todoList);
+        when(todoAppRepository.save(any(TodoList.class))).thenReturn(todoList);
+
+        todoList.setComplete(true);
+
+        TodoList updatedTodoList = todoService.updateTodoItemById(todoList.getId(), todoList);
+        assertEquals(todoList, updatedTodoList);
+        assertEquals(todoList.isComplete(), updatedTodoList.isComplete());
+    }
 }
