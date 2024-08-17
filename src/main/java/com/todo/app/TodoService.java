@@ -3,6 +3,8 @@ package com.todo.app;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TodoService {
@@ -15,5 +17,9 @@ public class TodoService {
 
     public TodoList getTodoById(int id) {
         return todoAppRepository.getReferenceById(id);
+    }
+
+    public List<TodoList> findAllTodos() {
+        return todoAppRepository.findAll();
     }
 }
