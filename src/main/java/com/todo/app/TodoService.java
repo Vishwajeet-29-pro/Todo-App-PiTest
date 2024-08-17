@@ -22,4 +22,12 @@ public class TodoService {
     public List<TodoList> findAllTodos() {
         return todoAppRepository.findAll();
     }
+
+    public TodoList updateTodoItemById(int id, TodoList todoList) {
+        TodoList todoItem = todoAppRepository.getReferenceById(id);
+        todoItem.setTodoName(todoList.getTodoName());
+        todoItem.setComplete(todoItem.isComplete());
+        todoItem.setCreateDate(todoItem.getCreateDate());
+        return todoAppRepository.save(todoItem);
+    }
 }
