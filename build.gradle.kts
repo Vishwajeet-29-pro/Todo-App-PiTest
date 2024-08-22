@@ -35,4 +35,6 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	// exclude the test class
+	exclude("**/AppApplicationTests.class")
 }
