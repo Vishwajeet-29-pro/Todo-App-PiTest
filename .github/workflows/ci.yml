@@ -30,7 +30,10 @@ jobs:
       - name: Build and Push Docker Image
         uses: mr-smithers-excellent/docker-build-push@v4
         with:
-            image: vishwajeet29/learning-repo:latest
+            image: vishwajeet29/learning-repo  # Base image name
+            tags: |
+              latest  # Pushes as 'vishwajeet29/learning-repo:latest'
+              ${{ github.sha }}  # Pushes as 'vishwajeet29/learning-repo:<commit SHA>'
             registry: docker.io
             username: ${{ secrets.DOCKER_USERNAME }}
             password: ${{ secrets.DOCKER_PASSWORD }}
